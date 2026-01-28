@@ -1,0 +1,8 @@
+export {default as cloud } from '../assets/images/cloud.png'
+export {default as drop } from '../assets/images/drop.svg'
+export {default as logo } from '../assets/images/logo.svg'
+export {default as presip } from '../assets/images/presip.svg'
+export {default as pressure } from '../assets/images/pressure.svg'
+export {default as sun } from '../assets/images/sun.svg'
+export {default as temp } from '../assets/images/temp.svg'
+export {default as wind } from '../assets/images/wind.svg'
