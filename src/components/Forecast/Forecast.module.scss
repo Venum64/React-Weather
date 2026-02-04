@@ -1,0 +1,54 @@
+.forecast {
+  padding: 92px 0 150px;
+  &__content {
+    box-shadow: 2px 5px 25px -3px #b4b4b440;
+    padding: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 20px;
+  }
+  &__card {
+    padding: 12px;
+    background: #4793ff33;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    &_h {
+      font-family: " Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--color);
+      text-transform: capitalize;
+    }
+    &_p {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #939cb0;
+    }
+    &_top_text {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    &_p_bottom {
+      margin-top: 6px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #939cb0;
+      text-transform: lowercase;
+    }
+    &_p_bottom::first-letter {
+      text-transform: uppercase;
+    }
+    &_img img{
+      width: 96px;
+      height: 96px;
+    }
+  }
+}

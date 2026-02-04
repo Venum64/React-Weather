@@ -1,42 +1,53 @@
 import React from "react";
 import s from "./Current.module.scss";
 import { presip, pressure, sun, temp, wind } from "../../utils/reExport";
+import { useSelector } from "react-redux";
+import { weatherSelector } from "../../store/weather/weatherSlice";
+import { getTime } from "../../utils/getTime";
 
 const Current = () => {
+  const { data } = useSelector(weatherSelector);
+  console.log(data);
+  const degree = Math.round(data.current.temp);
+  const city = data.city;
+  const time = getTime(data.timeZone);
+
   const items = [
     {
       img: temp,
       title: "Температура",
-      desc: "20° - ощущается как 17°",
+      desc: `${degree}° - ощущается как ${Math.round(
+        data.current.feels_like
+      )}°`,
     },
     {
       img: pressure,
       title: "Давление",
-      desc: "765 мм ртутного столба - нормальное",
+      desc: `${data.current.pressure} мм ртутного столба`,
     },
     {
       img: presip,
-      title: "Осадки",
-      desc: "Без осадков",
+      title: "Облачность",
+      desc: `${data.current.clouds}`,
     },
     {
       img: wind,
       title: "Ветер",
-      desc: "3 м/с юго-запад - легкий ветер",
+      desc: `${data.current.wind_speed} м/с`,
     },
   ];
 
   return (
     <section className={s.current}>
       <div className={s.current__left}>
-        <p className={s.current__left_degree}>20°</p>
+        <p className={s.current__left_degree}>{degree}°</p>
         <p className={s.current__left_today}>Сегодня</p>
-        <p className={s.current__left_time}>Время: 21:54</p>
-        <p className={s.current__left_city}>Город: Санкт-Петербург</p>
+        <p className={s.current__left_time}>Время: {time}</p>
+        <p className={s.current__left_city}>Город: {city}</p>
         <img src={sun} alt="" className={s.current__left_img} />
       </div>
       <div className={s.current__right}>
-        {items.map((item) =>(
+        {items.map((item) => (
           <div className={s.current__right_item} key={item.title}>
             <div className={s.current__right_item_img}>
               <img src={item.img} alt="" />

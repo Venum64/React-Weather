@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { data } from "autoprefixer";
 import axios from "axios";
+
 
 const initialState = {
   data: null,
@@ -33,7 +33,9 @@ export const getWeather = createAsyncThunk(
     const { data } = await axios.get(
       `https://api.openweathermap.org/data/2.8/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts,hourly&appid=${key}&units=metric&lang=ru`
     );
+    data.city = local_names.ru || local_names.en;
     console.log(data);
+    return data;
   }
 );
 
@@ -41,6 +43,13 @@ const weatherSlice = createSlice({
   name: "weatherSlice",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getWeather.fulfilled, (state, action) => {
+      state.data = action.payload;
+    });
+  },
 });
 
 export default weatherSlice.reducer;
+
+export const weatherSelector = (state) => state.weather;
